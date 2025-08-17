@@ -53,23 +53,23 @@ export const ExpenseList = ({ expenses, loading, onRefresh }) => {
   return (
     <div className="bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700">
       {/* Header */}
-      <div className="px-6 py-4 border-b border-gray-200 dark:border-gray-600">
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+      <div className="px-3 sm:px-6 py-3 sm:py-4 border-b border-gray-200 dark:border-gray-600">
+        <div className="flex flex-col space-y-3 sm:space-y-0 sm:flex-row sm:items-center justify-between sm:gap-4">
           <div>
-            <h3 className="text-lg font-medium text-gray-900 dark:text-white">Expense History</h3>
-            <p className="text-sm text-gray-600 dark:text-gray-300">
+            <h3 className="text-base sm:text-lg font-medium text-gray-900 dark:text-white">Expense History</h3>
+            <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-300">
               {filteredAndSortedExpenses.length} expenses • Total: {formatCurrencyWithLanguage(totalAmount, currentLanguage)}
             </p>
           </div>
           
-          <div className="flex items-center space-x-3">
+          <div className="flex flex-col xs:flex-row items-stretch xs:items-center space-y-2 xs:space-y-0 xs:space-x-2 sm:space-x-3">
             {/* Search */}
-            <div className="relative">
+            <div className="relative flex-1 xs:flex-none">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 dark:text-gray-500" size={16} />
               <input
                 type="text"
                 placeholder="Search expenses..."
-                className="pl-10 pr-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md focus:ring-2 focus:ring-indigo-500 focus:border-transparent text-sm bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400"
+                className="w-full xs:w-auto pl-10 pr-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md focus:ring-2 focus:ring-indigo-500 focus:border-transparent text-sm bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400"
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
               />
@@ -97,7 +97,7 @@ export const ExpenseList = ({ expenses, loading, onRefresh }) => {
             <button
               onClick={onRefresh}
               disabled={loading}
-              className="p-2 text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-700 rounded-md transition-colors disabled:opacity-50"
+              className="p-2 text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-700 rounded-md transition-colors disabled:opacity-50 flex-shrink-0"
               title="Refresh"
             >
               <RefreshCw size={16} className={loading ? 'animate-spin' : ''} />
@@ -109,40 +109,40 @@ export const ExpenseList = ({ expenses, loading, onRefresh }) => {
       {/* Content */}
       <div className="divide-y divide-gray-200 dark:divide-gray-600">
         {loading ? (
-          <div className="px-6 py-12 text-center">
+          <div className="px-3 sm:px-6 py-8 sm:py-12 text-center">
             <LoadingSpinner size="lg" />
-            <p className="mt-4 text-gray-600 dark:text-gray-300">Loading expenses...</p>
+            <p className="mt-4 text-sm sm:text-base text-gray-600 dark:text-gray-300">Loading expenses...</p>
           </div>
         ) : filteredAndSortedExpenses.length === 0 ? (
-          <div className="px-6 py-12 text-center text-gray-500 dark:text-gray-400">
+          <div className="px-3 sm:px-6 py-8 sm:py-12 text-center text-gray-500 dark:text-gray-400">
             {searchTerm ? (
               <div>
-                <p className="text-lg font-medium">No matching expenses found</p>
-                <p className="text-sm">Try adjusting your search term</p>
+                <p className="text-base sm:text-lg font-medium">No matching expenses found</p>
+                <p className="text-xs sm:text-sm">Try adjusting your search term</p>
                 <button
                   onClick={() => setSearchTerm('')}
-                  className="mt-2 text-indigo-600 dark:text-indigo-400 hover:text-indigo-700 dark:hover:text-indigo-300 text-sm"
+                  className="mt-2 text-indigo-600 dark:text-indigo-400 hover:text-indigo-700 dark:hover:text-indigo-300 text-xs sm:text-sm"
                 >
                   Clear search
                 </button>
               </div>
             ) : (
               <div>
-                <DollarSign className="mx-auto h-12 w-12 text-gray-400 dark:text-gray-500 mb-4" />
-                <p className="text-lg font-medium">No expenses yet</p>
-                <p className="text-sm">Start by adding your first expense</p>
+                <DollarSign className="mx-auto h-10 w-10 sm:h-12 sm:w-12 text-gray-400 dark:text-gray-500 mb-4" />
+                <p className="text-base sm:text-lg font-medium">No expenses yet</p>
+                <p className="text-xs sm:text-sm">Start by adding your first expense</p>
               </div>
             )}
           </div>
         ) : (
-          <div className="max-h-96 overflow-y-auto">
+          <div className="max-h-80 sm:max-h-96 overflow-y-auto">
             {filteredAndSortedExpenses.map((expense) => (
               <div 
                 key={expense._id} 
-                className="px-6 py-4 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
+                className="px-3 sm:px-6 py-3 sm:py-4 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
               >
                 <div className="flex items-center justify-between">
-                  <div className="flex items-center space-x-3 flex-1 min-w-0">
+                  <div className="flex items-center space-x-2 sm:space-x-3 flex-1 min-w-0">
                     {/* Category Color Indicator */}
                     <div 
                       className="w-3 h-3 rounded-full flex-shrink-0"
@@ -154,7 +154,7 @@ export const ExpenseList = ({ expenses, loading, onRefresh }) => {
                       <p className="text-sm font-medium text-gray-900 dark:text-white truncate">
                         {expense.note}
                       </p>
-                      <div className="flex items-center space-x-4 mt-1">
+                      <div className="flex flex-col xs:flex-row xs:items-center xs:space-x-4 mt-1 space-y-1 xs:space-y-0">
                         <span className="text-xs text-gray-500 dark:text-gray-400 capitalize">
                           {capitalizeFirst(expense.category)}
                         </span>
@@ -167,7 +167,7 @@ export const ExpenseList = ({ expenses, loading, onRefresh }) => {
                   </div>
                   
                   {/* Amount */}
-                  <div className="text-right flex-shrink-0">
+                  <div className="text-right flex-shrink-0 ml-2">
                     <p className="text-sm font-medium text-gray-900 dark:text-white">
                       {formatCurrencyWithLanguage(expense.amount, currentLanguage)}
                     </p>
@@ -181,8 +181,8 @@ export const ExpenseList = ({ expenses, loading, onRefresh }) => {
 
       {/* Footer */}
       {filteredAndSortedExpenses.length > 0 && (
-        <div className="px-6 py-3 bg-gray-50 dark:bg-gray-700 border-t border-gray-200 dark:border-gray-600">
-          <div className="flex justify-between items-center text-sm text-gray-600 dark:text-gray-300">
+        <div className="px-3 sm:px-6 py-3 bg-gray-50 dark:bg-gray-700 border-t border-gray-200 dark:border-gray-600">
+          <div className="flex flex-col xs:flex-row justify-between items-start xs:items-center text-xs sm:text-sm text-gray-600 dark:text-gray-300 space-y-2 xs:space-y-0">
             <span>
               Showing {filteredAndSortedExpenses.length} of {expenses.length} expenses
             </span>

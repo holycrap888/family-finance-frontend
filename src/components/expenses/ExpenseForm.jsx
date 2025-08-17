@@ -60,17 +60,17 @@ export const ExpenseForm = ({ onClose, onSuccess, loading: externalLoading = fal
   const loading = externalLoading || isSubmitting;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
-      <div className="bg-white dark:bg-gray-800 rounded-lg p-6 w-full max-w-md max-h-[90vh] overflow-y-auto">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-3 sm:p-4 z-50">
+      <div className="bg-white dark:bg-gray-800 rounded-lg p-4 sm:p-6 w-full max-w-md max-h-[90vh] overflow-y-auto">
         {/* Header */}
-        <div className="flex items-center justify-between mb-6">
-          <h2 className="text-xl font-bold text-gray-900 dark:text-white">Add New Expense</h2>
+        <div className="flex items-center justify-between mb-4 sm:mb-6">
+          <h2 className="text-lg sm:text-xl font-bold text-gray-900 dark:text-white">Add New Expense</h2>
           <button
             onClick={onClose}
-            className="text-gray-400 hover:text-gray-600 dark:text-gray-300 dark:hover:text-gray-100 transition-colors"
+            className="text-gray-400 hover:text-gray-600 dark:text-gray-300 dark:hover:text-gray-100 transition-colors p-1"
             disabled={loading}
           >
-            <X size={24} />
+            <X size={20} className="sm:w-6 sm:h-6" />
           </button>
         </div>
         
@@ -90,7 +90,7 @@ export const ExpenseForm = ({ onClose, onSuccess, loading: externalLoading = fal
                 step="0.01"
                 min="0"
                 required
-                className={`w-full pl-10 pr-3 py-2 border rounded-md focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-colors bg-white dark:bg-gray-700 text-gray-900 dark:text-white ${
+                className={`w-full pl-10 pr-3 py-2 sm:py-3 border rounded-md focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-colors bg-white dark:bg-gray-700 text-gray-900 dark:text-white text-sm sm:text-base ${
                   errors.amount ? 'border-red-300 dark:border-red-600' : 'border-gray-300 dark:border-gray-600'
                 }`}
                 value={formData.amount}
@@ -113,7 +113,7 @@ export const ExpenseForm = ({ onClose, onSuccess, loading: externalLoading = fal
               Category *
             </label>
             <select
-              className={`w-full px-3 py-2 border rounded-md focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-colors bg-white dark:bg-gray-700 text-gray-900 dark:text-white ${
+              className={`w-full px-3 py-2 sm:py-3 border rounded-md focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-colors bg-white dark:bg-gray-700 text-gray-900 dark:text-white text-sm sm:text-base ${
                 errors.category ? 'border-red-300 dark:border-red-600' : 'border-gray-300 dark:border-gray-600'
               }`}
               value={formData.category}
@@ -142,7 +142,7 @@ export const ExpenseForm = ({ onClose, onSuccess, loading: externalLoading = fal
             <input
               type="text"
               required
-              className={`w-full px-3 py-2 border rounded-md focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-colors bg-white dark:bg-gray-700 text-gray-900 dark:text-white ${
+              className={`w-full px-3 py-2 sm:py-3 border rounded-md focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-colors bg-white dark:bg-gray-700 text-gray-900 dark:text-white text-sm sm:text-base ${
                 errors.note ? 'border-red-300 dark:border-red-600' : 'border-gray-300 dark:border-gray-600'
               }`}
               value={formData.note}
@@ -166,7 +166,7 @@ export const ExpenseForm = ({ onClose, onSuccess, loading: externalLoading = fal
             <input
               type="date"
               required
-              className={`w-full px-3 py-2 border rounded-md focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-colors bg-white dark:bg-gray-700 text-gray-900 dark:text-white ${
+              className={`w-full px-3 py-2 sm:py-3 border rounded-md focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-colors bg-white dark:bg-gray-700 text-gray-900 dark:text-white text-sm sm:text-base ${
                 errors.date ? 'border-red-300 dark:border-red-600' : 'border-gray-300 dark:border-gray-600'
               }`}
               value={formData.date}
@@ -183,26 +183,26 @@ export const ExpenseForm = ({ onClose, onSuccess, loading: externalLoading = fal
 
           {/* Submit Error */}
           {errors.submit && (
-            <div className="bg-red-50 dark:bg-red-900/30 border border-red-200 dark:border-red-700 text-red-700 dark:text-red-300 px-4 py-3 rounded-lg flex items-center">
-              <AlertCircle size={20} className="mr-2 flex-shrink-0" />
-              <span>{errors.submit}</span>
+            <div className="bg-red-50 dark:bg-red-900/30 border border-red-200 dark:border-red-700 text-red-700 dark:text-red-300 px-3 sm:px-4 py-3 rounded-lg flex items-start">
+              <AlertCircle size={20} className="mr-2 flex-shrink-0 mt-0.5" />
+              <span className="text-sm">{errors.submit}</span>
             </div>
           )}
 
           {/* Action Buttons */}
-          <div className="flex space-x-3 pt-4">
+          <div className="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-3 pt-4">
             <button
               type="button"
               onClick={onClose}
               disabled={loading}
-              className="flex-1 px-4 py-2 text-gray-700 dark:text-gray-300 bg-gray-100 dark:bg-gray-700 rounded-md hover:bg-gray-200 dark:hover:bg-gray-600 disabled:opacity-50 transition-colors"
+              className="w-full sm:flex-1 px-4 py-2 sm:py-2 text-gray-700 dark:text-gray-300 bg-gray-100 dark:bg-gray-700 rounded-md hover:bg-gray-200 dark:hover:bg-gray-600 disabled:opacity-50 transition-colors text-sm sm:text-base"
             >
               Cancel
             </button>
             <button
               type="submit"
               disabled={loading}
-              className="flex-1 px-4 py-2 bg-indigo-600 dark:bg-indigo-500 text-white rounded-md hover:bg-indigo-700 dark:hover:bg-indigo-600 disabled:opacity-50 transition-colors flex items-center justify-center"
+              className="w-full sm:flex-1 px-4 py-2 sm:py-2 bg-indigo-600 dark:bg-indigo-500 text-white rounded-md hover:bg-indigo-700 dark:hover:bg-indigo-600 disabled:opacity-50 transition-colors flex items-center justify-center text-sm sm:text-base"
             >
               {loading ? (
                 <>

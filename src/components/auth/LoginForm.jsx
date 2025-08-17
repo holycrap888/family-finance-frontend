@@ -97,23 +97,23 @@ export const LoginForm = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-900 dark:to-gray-800 flex items-center justify-center p-4">
-      <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-8 w-full max-w-md">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-900 dark:to-gray-800 flex items-center justify-center p-3 sm:p-4">
+      <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-6 sm:p-8 w-full max-w-md">
         {/* Header */}
-        <div className="text-center mb-8">
-          <DollarSign className="mx-auto h-12 w-12 text-indigo-600 mb-4" />
-          <h1 className="text-3xl font-bold text-gray-900 dark:text-white">{t('dashboard.title')}</h1>
-          <p className="text-gray-600 dark:text-gray-300 mt-2">
+        <div className="text-center mb-6 sm:mb-8">
+          <DollarSign className="mx-auto h-10 w-10 sm:h-12 sm:w-12 text-indigo-600 mb-3 sm:mb-4" />
+          <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white">{t('dashboard.title')}</h1>
+          <p className="text-gray-600 dark:text-gray-300 mt-2 text-sm sm:text-base">
             {isLogin ? t('common.welcome') : 'Create your account'}
           </p>
-          <div className="mt-4 flex justify-center space-x-4">
+          <div className="mt-3 sm:mt-4 flex justify-center space-x-3 sm:space-x-4">
             <LanguageSwitcher />
             <ThemeSwitcher />
           </div>
         </div>
 
         {/* Form */}
-        <form onSubmit={handleSubmit} className="space-y-6">
+        <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
           {/* Name Field (Registration only) */}
           {!isLogin && (
             <div>
@@ -124,7 +124,7 @@ export const LoginForm = () => {
                 id="name"
                 type="text"
                 required
-                className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-colors bg-white dark:bg-gray-700 text-gray-900 dark:text-white ${
+                className={`w-full px-3 sm:px-4 py-2 sm:py-3 border rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-colors bg-white dark:bg-gray-700 text-gray-900 dark:text-white text-sm sm:text-base ${
                   fieldErrors.name ? 'border-red-300' : 'border-gray-300 dark:border-gray-600'
                 }`}
                 value={formData.name}
@@ -149,7 +149,7 @@ export const LoginForm = () => {
                 id="email"
                 type="text"
               required
-              className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-colors bg-white dark:bg-gray-700 text-gray-900 dark:text-white ${
+              className={`w-full px-3 sm:px-4 py-2 sm:py-3 border rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-colors bg-white dark:bg-gray-700 text-gray-900 dark:text-white text-sm sm:text-base ${
                 fieldErrors.email ? 'border-red-300' : 'border-gray-300 dark:border-gray-600'
               }`}
               value={formData.email}
@@ -174,7 +174,7 @@ export const LoginForm = () => {
                 id="password"
                 type={showPassword ? "text" : "password"}
                 required
-                className={`w-full px-4 py-3 pr-12 border rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-colors bg-white dark:bg-gray-700 text-gray-900 dark:text-white ${
+                className={`w-full px-3 sm:px-4 py-2 sm:py-3 pr-10 sm:pr-12 border rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-colors bg-white dark:bg-gray-700 text-gray-900 dark:text-white text-sm sm:text-base ${
                   fieldErrors.password ? 'border-red-300' : 'border-gray-300 dark:border-gray-600'
                 }`}
                 value={formData.password}
@@ -186,7 +186,7 @@ export const LoginForm = () => {
                 className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 dark:text-gray-500 hover:text-gray-600 dark:hover:text-gray-300 transition-colors"
                 onClick={() => setShowPassword(!showPassword)}
               >
-                {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+                {showPassword ? <EyeOff size={18} className="sm:w-5 sm:h-5" /> : <Eye size={18} className="sm:w-5 sm:h-5" />}
               </button>
             </div>
             {fieldErrors.password && (
@@ -213,7 +213,7 @@ export const LoginForm = () => {
                   required
                   min="0"
                   step="0.01"
-                  className={`w-full pl-8 pr-4 py-3 border rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-colors bg-white dark:bg-gray-700 text-gray-900 dark:text-white ${
+                  className={`w-full pl-7 sm:pl-8 pr-3 sm:pr-4 py-2 sm:py-3 border rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-colors bg-white dark:bg-gray-700 text-gray-900 dark:text-white text-sm sm:text-base ${
                     fieldErrors.salary ? 'border-red-300' : 'border-gray-300 dark:border-gray-600'
                   }`}
                   value={formData.salary}
@@ -232,9 +232,9 @@ export const LoginForm = () => {
 
           {/* Global Error */}
           {error && (
-            <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg flex items-center">
-              <AlertCircle size={20} className="mr-2 flex-shrink-0" />
-              <span>{error}</span>
+            <div className="bg-red-50 border border-red-200 text-red-700 px-3 sm:px-4 py-3 rounded-lg flex items-start">
+              <AlertCircle size={18} className="sm:w-5 sm:h-5 mr-2 flex-shrink-0 mt-0.5" />
+              <span className="text-sm">{error}</span>
             </div>
           )}
 
@@ -242,7 +242,7 @@ export const LoginForm = () => {
           <button
             type="submit"
             disabled={loading}
-            className="w-full bg-indigo-600 text-white py-3 px-4 rounded-lg font-medium hover:bg-indigo-700 focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed transition-colors flex items-center justify-center"
+            className="w-full bg-indigo-600 text-white py-2 sm:py-3 px-4 rounded-lg font-medium hover:bg-indigo-700 focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed transition-colors flex items-center justify-center text-sm sm:text-base"
           >
             {loading ? (
               <>
@@ -258,17 +258,17 @@ export const LoginForm = () => {
         </form>
 
         {/* Toggle Mode */}
-        <div className="mt-6 text-center">
+        <div className="mt-4 sm:mt-6 text-center">
           <button
             onClick={toggleMode}
-            className="text-indigo-600 dark:text-indigo-400 hover:text-indigo-700 dark:hover:text-indigo-300 font-medium transition-colors"
+            className="text-indigo-600 dark:text-indigo-400 hover:text-indigo-700 dark:hover:text-indigo-300 font-medium transition-colors text-sm sm:text-base"
           >
             {isLogin ? "Don't have an account? Sign up" : "Already have an account? Sign in"}
           </button>
         </div>
 
         {/* Demo Notice */}
-        <div className="mt-4 p-3 bg-blue-50 dark:bg-blue-900/20 rounded-lg text-sm text-blue-700 dark:text-blue-300">
+        <div className="mt-3 sm:mt-4 p-3 bg-blue-50 dark:bg-blue-900/20 rounded-lg text-xs sm:text-sm text-blue-700 dark:text-blue-300">
           <p><strong>Note:</strong> Make sure your backend server is running on the configured port.</p>
         </div>
       </div>

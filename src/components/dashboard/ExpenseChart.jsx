@@ -48,10 +48,10 @@ export const ExpenseChart = ({ chartData, expenses, loading }) => {
 
   if (loading) {
     return (
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 lg:gap-8 mb-6 sm:mb-8">
         {[1, 2].map(i => (
-          <div key={i} className="bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 p-6">
-            <div className="flex items-center justify-center h-80">
+          <div key={i} className="bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 p-4 sm:p-6">
+            <div className="flex items-center justify-center h-64 sm:h-80">
               <LoadingSpinner size="lg" />
             </div>
           </div>
@@ -61,21 +61,23 @@ export const ExpenseChart = ({ chartData, expenses, loading }) => {
   }
 
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+    <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 lg:gap-8 mb-6 sm:mb-8">
       {/* Line Chart */}
-      <div className="bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 p-6">
-        <h3 className="text-lg font-medium text-gray-900 dark:text-white mb-4">Daily Spending Trend</h3>
+      <div className="bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 p-4 sm:p-6">
+        <h3 className="text-base sm:text-lg font-medium text-gray-900 dark:text-white mb-3 sm:mb-4">Daily Spending Trend</h3>
         {chartData.length > 0 ? (
-          <ResponsiveContainer width="100%" height={300}>
+          <ResponsiveContainer width="100%" height={250} className="sm:!h-[300px]">
             <LineChart data={chartData}>
               <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
               <XAxis 
                 dataKey="day" 
-                tick={{ fontSize: 12 }}
+                tick={{ fontSize: 10 }}
+                className="sm:text-xs"
                 tickLine={{ stroke: '#e0e0e0' }}
               />
               <YAxis 
-                tick={{ fontSize: 12 }}
+                tick={{ fontSize: 10 }}
+                className="sm:text-xs"
                 tickLine={{ stroke: '#e0e0e0' }}
                 tickFormatter={(value) => `${value}`}
               />
@@ -85,40 +87,41 @@ export const ExpenseChart = ({ chartData, expenses, loading }) => {
                 dataKey="total" 
                 stroke="#6366f1" 
                 strokeWidth={2}
-                dot={{ fill: '#6366f1', strokeWidth: 2, r: 4 }}
-                activeDot={{ r: 6, stroke: '#6366f1', strokeWidth: 2 }}
+                dot={{ fill: '#6366f1', strokeWidth: 2, r: 3 }}
+                activeDot={{ r: 5, stroke: '#6366f1', strokeWidth: 2 }}
               />
             </LineChart>
           </ResponsiveContainer>
         ) : (
-          <div className="h-80 flex items-center justify-center text-gray-500 dark:text-gray-400">
-            <div className="text-center">
-              <p className="text-lg font-medium">No data available</p>
-              <p className="text-sm">Add expenses to see your spending trend</p>
+          <div className="h-64 sm:h-80 flex items-center justify-center text-gray-500 dark:text-gray-400">
+            <div className="text-center px-4">
+              <p className="text-base sm:text-lg font-medium">No data available</p>
+              <p className="text-xs sm:text-sm">Add expenses to see your spending trend</p>
             </div>
           </div>
         )}
       </div>
 
       {/* Pie Chart */}
-      <div className="bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 p-6">
-        <h3 className="text-lg font-medium text-gray-900 dark:text-white mb-4">Spending by Category</h3>
+      <div className="bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 p-4 sm:p-6">
+        <h3 className="text-base sm:text-lg font-medium text-gray-900 dark:text-white mb-3 sm:mb-4">Spending by Category</h3>
         {pieData.length > 0 ? (
           <div className="flex flex-col">
-            <ResponsiveContainer width="100%" height={240}>
+            <ResponsiveContainer width="100%" height={200} className="sm:!h-[240px]">
               <PieChart>
                 <Pie
                   data={pieData}
                   cx="50%"
                   cy="50%"
                   labelLine={false}
-                  label={({ name, percent }) => percent > 5 ? `${capitalizeFirst(name)} ${(percent * 100).toFixed(0)}%` : ''}
-                  outerRadius={80}
+                  label={({ name, percent }) => percent > 8 ? `${capitalizeFirst(name)} ${(percent * 100).toFixed(0)}%` : ''}
+                  outerRadius={70}
+                  className="sm:!outerRadius-80"
                   fill="#8884d8"
                   dataKey="value"
                 >
-                  {pieData.map((entry, index) => (
-                    <Cell key={`cell-${index}`} fill={CATEGORY_COLORS[entry.name] || '#6B7280'} />
+                  {pieData.map((entry) => (
+                    <Cell key={`cell-${entry.name}`} fill={CATEGORY_COLORS[entry.name] || '#6B7280'} />
                   ))}
                 </Pie>
                 <Tooltip content={<PieTooltip />} />
@@ -126,24 +129,24 @@ export const ExpenseChart = ({ chartData, expenses, loading }) => {
             </ResponsiveContainer>
             
             {/* Legend */}
-            <div className="grid grid-cols-2 gap-2 mt-4">
+            <div className="grid grid-cols-1 xs:grid-cols-2 gap-2 mt-3 sm:mt-4">
               {pieData.slice(0, 6).map((entry) => (
-                <div key={entry.name} className="flex items-center text-sm">
+                <div key={entry.name} className="flex items-center text-xs sm:text-sm">
                   <div 
                     className="w-3 h-3 rounded-full mr-2 flex-shrink-0"
                     style={{ backgroundColor: CATEGORY_COLORS[entry.name] || '#6B7280' }}
                   ></div>
-                  <span className="capitalize truncate text-gray-700 dark:text-gray-300">{entry.name}</span>
-                  <span className="ml-auto font-medium text-gray-900 dark:text-white">{formatCurrencyWithLanguage(entry.value, currentLanguage)}</span>
+                  <span className="capitalize truncate text-gray-700 dark:text-gray-300 flex-1">{entry.name}</span>
+                  <span className="ml-2 font-medium text-gray-900 dark:text-white text-right">{formatCurrencyWithLanguage(entry.value, currentLanguage)}</span>
                 </div>
               ))}
             </div>
           </div>
         ) : (
-          <div className="h-80 flex items-center justify-center text-gray-500 dark:text-gray-400">
-            <div className="text-center">
-              <p className="text-lg font-medium">No expenses yet</p>
-              <p className="text-sm">Start adding expenses to see category breakdown</p>
+          <div className="h-64 sm:h-80 flex items-center justify-center text-gray-500 dark:text-gray-400">
+            <div className="text-center px-4">
+              <p className="text-base sm:text-lg font-medium">No expenses yet</p>
+              <p className="text-xs sm:text-sm">Start adding expenses to see category breakdown</p>
             </div>
           </div>
         )}
