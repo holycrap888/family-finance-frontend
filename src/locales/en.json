@@ -1,0 +1,75 @@
+{
+  "common": {
+    "loading": "Loading...",
+    "error": "Error",
+    "save": "Save",
+    "cancel": "Cancel",
+    "close": "Close",
+    "retry": "Retry",
+    "add": "Add",
+    "edit": "Edit",
+    "delete": "Delete",
+    "month": "Month",
+    "welcome": "Welcome back",
+    "success": "Success",
+    "failed": "Failed"
+  },
+  "navigation": {
+    "addExpense": "Add Expense",
+    "settings": "Settings",
+    "logout": "Logout"
+  },
+  "dashboard": {
+    "title": "Family Finance",
+    "overview": "Overview",
+    "trackExpenses": "Track your expenses and manage your budget",
+    "errorLoading": "Error loading data",
+    "errorMessage": "Please try refreshing the page.",
+    "expenseAdded": "Expense added successfully!",
+    "settingsUpdated": "Settings updated successfully!",
+    "loadingFinancialData": "Loading your financial data...",
+    "initializingApp": "Initializing application..."
+  },
+  "budget": {
+    "need": "Need",
+    "want": "Want",
+    "savings": "Savings",
+    "investments": "Investments",
+    "recommended": "Recommended",
+    "actual": "Actual",
+    "difference": "Difference"
+  },
+  "summary": {
+    "totalIncome": "Total Income",
+    "totalExpenses": "Total Expenses",
+    "remainingBudget": "Remaining Budget",
+    "expenseCount": "Expenses"
+  },
+  "expenses": {
+    "title": "Expenses",
+    "addNew": "Add New Expense",
+    "description": "Description",
+    "amount": "Amount",
+    "category": "Category",
+    "date": "Date",
+    "noExpenses": "No expenses found for this month",
+    "startAdding": "Start adding your expenses to track your budget."
+  },
+  "auth": {
+    "login": "Login",
+    "email": "Email",
+    "password": "Password",
+    "loginButton": "Sign In",
+    "loginError": "Login failed. Please check your credentials."
+  },
+  "settings": {
+    "title": "Settings",
+    "language": "Language",
+    "profile": "Profile",
+    "preferences": "Preferences"
+  },
+  "languages": {
+    "en": "English",
+    "th": "ไทย"
+  }
+}

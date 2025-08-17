@@ -1,0 +1,75 @@
+{
+  "common": {
+    "loading": "กำลังโหลด...",
+    "error": "ข้อผิดพลาด",
+    "save": "บันทึก",
+    "cancel": "ยกเลิก",
+    "close": "ปิด",
+    "retry": "ลองใหม่",
+    "add": "เพิ่ม",
+    "edit": "แก้ไข",
+    "delete": "ลบ",
+    "month": "เดือน",
+    "welcome": "ยินดีต้อนรับกลับ",
+    "success": "สำเร็จ",
+    "failed": "ล้มเหลว"
+  },
+  "navigation": {
+    "addExpense": "เพิ่มรายจ่าย",
+    "settings": "ตั้งค่า",
+    "logout": "ออกจากระบบ"
+  },
+  "dashboard": {
+    "title": "การเงินครอบครัว",
+    "overview": "ภาพรวม",
+    "trackExpenses": "ติดตามรายจ่ายและจัดการงบประมาณของคุณ",
+    "errorLoading": "เกิดข้อผิดพลาดในการโหลดข้อมูล",
+    "errorMessage": "กรุณาลองรีเฟรชหน้าเว็บ",
+    "expenseAdded": "เพิ่มรายจ่ายเรียบร้อยแล้ว!",
+    "settingsUpdated": "อัปเดตการตั้งค่าเรียบร้อยแล้ว!",
+    "loadingFinancialData": "กำลังโหลดข้อมูลทางการเงินของคุณ...",
+    "initializingApp": "กำลังเริ่มต้นแอปพลิเคชัน..."
+  },
+  "budget": {
+    "need": "จำเป็น",
+    "want": "ต้องการ",
+    "savings": "เงินออม",
+    "investments": "การลงทุน",
+    "recommended": "แนะนำ",
+    "actual": "จริง",
+    "difference": "ผลต่าง"
+  },
+  "summary": {
+    "totalIncome": "รายได้รวม",
+    "totalExpenses": "รายจ่ายรวม",
+    "remainingBudget": "งบประมาณคงเหลือ",
+    "expenseCount": "รายจ่าย"
+  },
+  "expenses": {
+    "title": "รายจ่าย",
+    "addNew": "เพิ่มรายจ่ายใหม่",
+    "description": "รายละเอียด",
+    "amount": "จำนวนเงิน",
+    "category": "หมวดหมู่",
+    "date": "วันที่",
+    "noExpenses": "ไม่พบรายจ่ายในเดือนนี้",
+    "startAdding": "เริ่มเพิ่มรายจ่ายของคุณเพื่อติดตามงบประมาณ"
+  },
+  "auth": {
+    "login": "เข้าสู่ระบบ",
+    "email": "อีเมล",
+    "password": "รหัสผ่าน",
+    "loginButton": "เข้าสู่ระบบ",
+    "loginError": "เข้าสู่ระบบล้มเหลว กรุณาตรวจสอบข้อมูลของคุณ"
+  },
+  "settings": {
+    "title": "ตั้งค่า",
+    "language": "ภาษา",
+    "profile": "โปรไฟล์",
+    "preferences": "การตั้งค่า"
+  },
+  "languages": {
+    "en": "English",
+    "th": "ไทย"
+  }
+}
