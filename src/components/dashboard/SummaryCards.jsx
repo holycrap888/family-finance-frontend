@@ -45,13 +45,13 @@ export const SummaryCards = ({ user, summary, expenseCount }) => {
       {cards.map((card) => {
         const Icon = card.icon;
         return (
-          <div key={card.title} className="bg-white rounded-lg shadow-sm border p-6 hover:shadow-md transition-shadow">
+          <div key={card.title} className="bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 p-6 hover:shadow-md transition-shadow">
             <div className="flex items-center">
-              <div className={`p-3 rounded-lg ${card.bgColor}`}>
+              <div className={`p-3 rounded-lg ${card.bgColor} dark:${card.bgColor.replace('bg-', 'bg-opacity-20 bg-')}`}>
                 <Icon className={`h-6 w-6 ${card.color}`} />
               </div>
               <div className="ml-4">
-                <p className="text-sm font-medium text-gray-600">{card.title}</p>
+                <p className="text-sm font-medium text-gray-600 dark:text-gray-300">{card.title}</p>
                 <p className={`text-2xl font-bold ${card.color}`}>{card.value}</p>
               </div>
             </div>

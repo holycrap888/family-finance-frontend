@@ -34,19 +34,19 @@ export const BudgetCards = ({ summary }) => {
       {cards.map((card) => {
         const Icon = card.icon;
         return (
-          <div key={card.title} className="bg-white rounded-lg shadow-sm border p-6 hover:shadow-md transition-shadow">
+          <div key={card.title} className="bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 p-6 hover:shadow-md transition-shadow">
             <div className="flex items-center mb-4">
-              <div className={`p-3 rounded-lg ${card.bgColor}`}>
+              <div className={`p-3 rounded-lg ${card.bgColor} dark:${card.bgColor.replace('bg-', 'bg-opacity-20 bg-')}`}>
                 <Icon className={`h-6 w-6 ${card.color}`} />
               </div>
               <div className="ml-4">
-                <p className="text-sm font-medium text-gray-600">{card.title}</p>
+                <p className="text-sm font-medium text-gray-600 dark:text-gray-300">{card.title}</p>
               </div>
             </div>
             <div className="space-y-1">
-              <p className="text-xs text-gray-500">{t('budget.recommended')}: <span className="font-semibold">{card.recommended}</span></p>
-              <p className="text-xs text-gray-500">{t('budget.actual')}: <span className="font-semibold">{card.actual}</span></p>
-              <p className="text-xs text-gray-500">{t('budget.difference')}: <span className={`font-semibold ${card.color}`}>{card.difference}</span></p>
+              <p className="text-xs text-gray-500 dark:text-gray-400">{t('budget.recommended')}: <span className="font-semibold">{card.recommended}</span></p>
+              <p className="text-xs text-gray-500 dark:text-gray-400">{t('budget.actual')}: <span className="font-semibold">{card.actual}</span></p>
+              <p className="text-xs text-gray-500 dark:text-gray-400">{t('budget.difference')}: <span className={`font-semibold ${card.color}`}>{card.difference}</span></p>
             </div>
           </div>
         );

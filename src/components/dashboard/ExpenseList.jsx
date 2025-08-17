@@ -51,13 +51,13 @@ export const ExpenseList = ({ expenses, loading, onRefresh }) => {
   const totalAmount = filteredAndSortedExpenses.reduce((sum, expense) => sum + expense.amount, 0);
 
   return (
-    <div className="bg-white rounded-lg shadow-sm border">
+    <div className="bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700">
       {/* Header */}
-      <div className="px-6 py-4 border-b border-gray-200">
+      <div className="px-6 py-4 border-b border-gray-200 dark:border-gray-600">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <div>
-            <h3 className="text-lg font-medium text-gray-900">Expense History</h3>
-            <p className="text-sm text-gray-600">
+            <h3 className="text-lg font-medium text-gray-900 dark:text-white">Expense History</h3>
+            <p className="text-sm text-gray-600 dark:text-gray-300">
               {filteredAndSortedExpenses.length} expenses • Total: {formatCurrencyWithLanguage(totalAmount, currentLanguage)}
             </p>
           </div>
@@ -65,11 +65,11 @@ export const ExpenseList = ({ expenses, loading, onRefresh }) => {
           <div className="flex items-center space-x-3">
             {/* Search */}
             <div className="relative">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={16} />
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 dark:text-gray-500" size={16} />
               <input
                 type="text"
                 placeholder="Search expenses..."
-                className="pl-10 pr-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-indigo-500 focus:border-transparent text-sm"
+                className="pl-10 pr-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md focus:ring-2 focus:ring-indigo-500 focus:border-transparent text-sm bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400"
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
               />
@@ -77,7 +77,7 @@ export const ExpenseList = ({ expenses, loading, onRefresh }) => {
             
             {/* Sort */}
             <select
-              className="px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-indigo-500 focus:border-transparent text-sm"
+              className="px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md focus:ring-2 focus:ring-indigo-500 focus:border-transparent text-sm bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
               value={`${sortBy}-${sortOrder}`}
               onChange={(e) => {
                 const [newSortBy, newSortOrder] = e.target.value.split('-');
@@ -97,7 +97,7 @@ export const ExpenseList = ({ expenses, loading, onRefresh }) => {
             <button
               onClick={onRefresh}
               disabled={loading}
-              className="p-2 text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors disabled:opacity-50"
+              className="p-2 text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-700 rounded-md transition-colors disabled:opacity-50"
               title="Refresh"
             >
               <RefreshCw size={16} className={loading ? 'animate-spin' : ''} />
@@ -107,28 +107,28 @@ export const ExpenseList = ({ expenses, loading, onRefresh }) => {
       </div>
 
       {/* Content */}
-      <div className="divide-y divide-gray-200">
+      <div className="divide-y divide-gray-200 dark:divide-gray-600">
         {loading ? (
           <div className="px-6 py-12 text-center">
             <LoadingSpinner size="lg" />
-            <p className="mt-4 text-gray-600">Loading expenses...</p>
+            <p className="mt-4 text-gray-600 dark:text-gray-300">Loading expenses...</p>
           </div>
         ) : filteredAndSortedExpenses.length === 0 ? (
-          <div className="px-6 py-12 text-center text-gray-500">
+          <div className="px-6 py-12 text-center text-gray-500 dark:text-gray-400">
             {searchTerm ? (
               <div>
                 <p className="text-lg font-medium">No matching expenses found</p>
                 <p className="text-sm">Try adjusting your search term</p>
                 <button
                   onClick={() => setSearchTerm('')}
-                  className="mt-2 text-indigo-600 hover:text-indigo-700 text-sm"
+                  className="mt-2 text-indigo-600 dark:text-indigo-400 hover:text-indigo-700 dark:hover:text-indigo-300 text-sm"
                 >
                   Clear search
                 </button>
               </div>
             ) : (
               <div>
-                <DollarSign className="mx-auto h-12 w-12 text-gray-400 mb-4" />
+                <DollarSign className="mx-auto h-12 w-12 text-gray-400 dark:text-gray-500 mb-4" />
                 <p className="text-lg font-medium">No expenses yet</p>
                 <p className="text-sm">Start by adding your first expense</p>
               </div>
@@ -139,7 +139,7 @@ export const ExpenseList = ({ expenses, loading, onRefresh }) => {
             {filteredAndSortedExpenses.map((expense) => (
               <div 
                 key={expense._id} 
-                className="px-6 py-4 hover:bg-gray-50 transition-colors"
+                className="px-6 py-4 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
               >
                 <div className="flex items-center justify-between">
                   <div className="flex items-center space-x-3 flex-1 min-w-0">
@@ -151,14 +151,14 @@ export const ExpenseList = ({ expenses, loading, onRefresh }) => {
                     
                     {/* Expense Details */}
                     <div className="flex-1 min-w-0">
-                      <p className="text-sm font-medium text-gray-900 truncate">
+                      <p className="text-sm font-medium text-gray-900 dark:text-white truncate">
                         {expense.note}
                       </p>
                       <div className="flex items-center space-x-4 mt-1">
-                        <span className="text-xs text-gray-500 capitalize">
+                        <span className="text-xs text-gray-500 dark:text-gray-400 capitalize">
                           {capitalizeFirst(expense.category)}
                         </span>
-                        <span className="text-xs text-gray-500 flex items-center">
+                        <span className="text-xs text-gray-500 dark:text-gray-400 flex items-center">
                           <Calendar size={12} className="mr-1" />
                           {formatDateWithLanguage(expense.date, currentLanguage)}
                         </span>
@@ -168,7 +168,7 @@ export const ExpenseList = ({ expenses, loading, onRefresh }) => {
                   
                   {/* Amount */}
                   <div className="text-right flex-shrink-0">
-                    <p className="text-sm font-medium text-gray-900">
+                    <p className="text-sm font-medium text-gray-900 dark:text-white">
                       {formatCurrencyWithLanguage(expense.amount, currentLanguage)}
                     </p>
                   </div>
@@ -181,15 +181,15 @@ export const ExpenseList = ({ expenses, loading, onRefresh }) => {
 
       {/* Footer */}
       {filteredAndSortedExpenses.length > 0 && (
-        <div className="px-6 py-3 bg-gray-50 border-t border-gray-200">
-          <div className="flex justify-between items-center text-sm text-gray-600">
+        <div className="px-6 py-3 bg-gray-50 dark:bg-gray-700 border-t border-gray-200 dark:border-gray-600">
+          <div className="flex justify-between items-center text-sm text-gray-600 dark:text-gray-300">
             <span>
               Showing {filteredAndSortedExpenses.length} of {expenses.length} expenses
             </span>
             {searchTerm && (
               <button
                 onClick={() => setSearchTerm('')}
-                className="text-indigo-600 hover:text-indigo-700"
+                className="text-indigo-600 dark:text-indigo-400 hover:text-indigo-700 dark:hover:text-indigo-300"
               >
                 Clear filters
               </button>
