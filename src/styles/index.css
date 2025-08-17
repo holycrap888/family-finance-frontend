@@ -1,9 +1,9 @@
+/* Import responsive utilities */
+@import './responsive.css';
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-/* Import responsive utilities */
-@import './responsive.css';
 
 @layer base {
   html {
@@ -79,6 +79,23 @@
   
   .scrollbar-hide::-webkit-scrollbar {
     display: none;
+  }
+  
+  /* Chart styling utilities for better dark mode support */
+  .chart-text-light {
+    fill: #374151;
+  }
+  
+  .chart-text-dark {
+    fill: #E5E7EB;
+  }
+  
+  .chart-grid-light {
+    stroke: #f0f0f0;
+  }
+  
+  .chart-grid-dark {
+    stroke: #374151;
   }
   
   /* Safe area utilities */

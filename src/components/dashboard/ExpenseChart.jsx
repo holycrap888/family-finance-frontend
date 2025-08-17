@@ -4,9 +4,45 @@ import { CATEGORY_COLORS } from '../../utils/constants.js';
 import { formatCurrencyWithLanguage, capitalizeFirst } from '../../utils/formatters.js';
 import { LoadingSpinner } from '../common/Loading.jsx';
 import { useLanguage } from '../../context/LanguageContext.jsx';
+import { useTheme } from '../../context/ThemeContext.jsx';
 
 export const ExpenseChart = ({ chartData, expenses, loading }) => {
   const { currentLanguage } = useLanguage();
+  const { isDark } = useTheme();
+  
+  // Define theme-aware colors
+  const chartColors = {
+    gridStroke: isDark ? '#374151' : '#f0f0f0', // gray-700 for dark, light gray for light
+    tickStroke: isDark ? '#4B5563' : '#e0e0e0', // gray-600 for dark, lighter gray for light
+    text: isDark ? '#E5E7EB' : '#374151', // gray-200 for dark, gray-700 for light
+    line: isDark ? '#818CF8' : '#6366f1', // lighter indigo for dark mode
+    lineDot: isDark ? '#818CF8' : '#6366f1',
+    activeDot: isDark ? '#818CF8' : '#6366f1'
+  };
+  
+  // Custom label function for pie chart with theme-aware colors
+  const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, name, percent }) => {
+    if (percent <= 0.08) return null; // Only show labels for slices > 8%
+    
+    const RADIAN = Math.PI / 180;
+    const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
+    const x = cx + radius * Math.cos(-midAngle * RADIAN);
+    const y = cy + radius * Math.sin(-midAngle * RADIAN);
+
+    return (
+      <text 
+        x={x} 
+        y={y} 
+        fill={chartColors.text} 
+        textAnchor={x > cx ? 'start' : 'end'} 
+        dominantBaseline="central"
+        fontSize="12px"
+        fontWeight="500"
+      >
+        {`${capitalizeFirst(name)} ${(percent * 100).toFixed(0)}%`}
+      </text>
+    );
+  };
   
   // Prepare pie chart data
   const pieData = expenses.reduce((acc, expense) => {
@@ -68,27 +104,29 @@ export const ExpenseChart = ({ chartData, expenses, loading }) => {
         {chartData.length > 0 ? (
           <ResponsiveContainer width="100%" height={250} className="sm:!h-[300px]">
             <LineChart data={chartData}>
-              <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
+              <CartesianGrid strokeDasharray="3 3" stroke={chartColors.gridStroke} />
               <XAxis 
                 dataKey="day" 
-                tick={{ fontSize: 10 }}
+                tick={{ fontSize: 10, fill: chartColors.text }}
                 className="sm:text-xs"
-                tickLine={{ stroke: '#e0e0e0' }}
+                tickLine={{ stroke: chartColors.tickStroke }}
+                axisLine={{ stroke: chartColors.tickStroke }}
               />
               <YAxis 
-                tick={{ fontSize: 10 }}
+                tick={{ fontSize: 10, fill: chartColors.text }}
                 className="sm:text-xs"
-                tickLine={{ stroke: '#e0e0e0' }}
+                tickLine={{ stroke: chartColors.tickStroke }}
+                axisLine={{ stroke: chartColors.tickStroke }}
                 tickFormatter={(value) => `${value}`}
               />
               <Tooltip content={<CustomTooltip />} />
               <Line 
                 type="monotone" 
                 dataKey="total" 
-                stroke="#6366f1" 
+                stroke={chartColors.line} 
                 strokeWidth={2}
-                dot={{ fill: '#6366f1', strokeWidth: 2, r: 3 }}
-                activeDot={{ r: 5, stroke: '#6366f1', strokeWidth: 2 }}
+                dot={{ fill: chartColors.lineDot, strokeWidth: 2, r: 3 }}
+                activeDot={{ r: 5, stroke: chartColors.activeDot, strokeWidth: 2 }}
               />
             </LineChart>
           </ResponsiveContainer>
@@ -114,7 +152,7 @@ export const ExpenseChart = ({ chartData, expenses, loading }) => {
                   cx="50%"
                   cy="50%"
                   labelLine={false}
-                  label={({ name, percent }) => percent > 8 ? `${capitalizeFirst(name)} ${(percent * 100).toFixed(0)}%` : ''}
+                  label={renderCustomizedLabel}
                   outerRadius={70}
                   className="sm:!outerRadius-80"
                   fill="#8884d8"
