@@ -1,5 +1,5 @@
 import React from 'react';
-import { TrendingUp } from 'lucide-react';
+import { Home, Heart, PiggyBank, TrendingUp } from 'lucide-react';
 import { formatCurrencyWithLanguage } from '../../utils/formatters.js';
 import { useTranslation } from 'react-i18next';
 import { useLanguage } from '../../context/LanguageContext.jsx';
@@ -10,10 +10,10 @@ export const BudgetCards = ({ summary }) => {
   const { currentLanguage } = useLanguage();
   
   const categories = [
-    { key: 'needsBalance', title: t('budget.need') },
-    { key: 'wantsBalance', title: t('budget.want') },
-    { key: 'savingsBalance', title: t('budget.savings') },
-    { key: 'investmentsBalance', title: t('budget.investments') },
+    { key: 'needsBalance', title: t('budget.need'), icon: Home, color: 'text-green-600', bgColor: 'bg-green-50' },
+    { key: 'wantsBalance', title: t('budget.want'), icon: Heart, color: 'text-pink-600', bgColor: 'bg-pink-50' },
+    { key: 'savingsBalance', title: t('budget.savings'), icon: PiggyBank, color: 'text-blue-600', bgColor: 'bg-blue-50' },
+    { key: 'investmentsBalance', title: t('budget.investments'), icon: TrendingUp, color: 'text-purple-600', bgColor: 'bg-purple-50' },
   ];
 
   const cards = categories.map(cat => {
@@ -23,9 +23,9 @@ export const BudgetCards = ({ summary }) => {
       recommended: formatCurrencyWithLanguage(data.recommended || 0, currentLanguage),
       actual: formatCurrencyWithLanguage(data.actual || 0, currentLanguage),
       difference: formatCurrencyWithLanguage(data.difference || 0, currentLanguage),
-      icon: TrendingUp,
-      color: 'text-blue-600',
-      bgColor: 'bg-blue-50'
+      icon: cat.icon,
+      color: cat.color,
+      bgColor: cat.bgColor
     };
   });
 
