@@ -14,6 +14,7 @@ import { ExpenseForm } from '../expenses/ExpenseForm.jsx';
 import { SettingsModal } from '../settings/SettingsModal.jsx';
 import { Loading } from '../common/Loading.jsx';
 import { LanguageSwitcher } from '../common/LanguageSwitcher.jsx';
+import { ThemeSwitcher } from '../common/ThemeSwitcher.jsx';
 import { useTranslation } from 'react-i18next';
 
 export const Dashboard = () => {
@@ -76,16 +77,16 @@ export const Dashboard = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
       {/* Header */}
-      <header className="bg-white shadow-sm border-b">
+      <header className="bg-white dark:bg-gray-800 shadow-sm border-b dark:border-gray-700">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <div className="flex items-center">
               <DollarSign className="h-8 w-8 text-indigo-600 mr-3" />
               <div>
-                <h1 className="text-xl font-bold text-gray-900">{t('dashboard.title')}</h1>
-                <p className="text-sm text-gray-600">{t('common.welcome')}, {user?.name}!</p>
+                <h1 className="text-xl font-bold text-gray-900 dark:text-white">{t('dashboard.title')}</h1>
+                <p className="text-sm text-gray-600 dark:text-gray-300">{t('common.welcome')}, {user?.name}!</p>
               </div>
             </div>
             
@@ -93,9 +94,12 @@ export const Dashboard = () => {
               {/* Language Switcher */}
               <LanguageSwitcher />
               
+              {/* Theme Switcher */}
+              <ThemeSwitcher />
+              
               {/* Month Selector */}
               <div className="flex items-center space-x-2">
-                <label htmlFor="month-select" className="text-sm text-gray-600">
+                <label htmlFor="month-select" className="text-sm text-gray-600 dark:text-gray-300">
                   {t('common.month')}:
                 </label>
                 <input
@@ -103,7 +107,7 @@ export const Dashboard = () => {
                   type="month"
                   value={currentMonth}
                   onChange={(e) => handleMonthChange(e.target.value)}
-                  className="px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-indigo-500 focus:border-transparent text-sm"
+                  className="px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md focus:ring-2 focus:ring-indigo-500 focus:border-transparent text-sm bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
                 />
               </div>
               
@@ -119,7 +123,7 @@ export const Dashboard = () => {
               {/* Settings Button */}
               <button
                 onClick={() => setShowSettings(true)}
-                className="p-2 text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors"
+                className="p-2 text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-700 rounded-md transition-colors"
                 title={t('navigation.settings')}
               >
                 <Settings size={20} />
@@ -128,7 +132,7 @@ export const Dashboard = () => {
               {/* Logout Button */}
               <button
                 onClick={logout}
-                className="p-2 text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors"
+                className="p-2 text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-700 rounded-md transition-colors"
                 title={t('navigation.logout')}
               >
                 <LogOut size={20} />
@@ -162,10 +166,10 @@ export const Dashboard = () => {
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Month Header */}
         <div className="mb-6">
-          <h2 className="text-2xl font-bold text-gray-900">
+          <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
             {formatMonthWithLanguage(currentMonth + '-01', currentLanguage)} {t('dashboard.overview')}
           </h2>
-          <p className="text-gray-600">
+          <p className="text-gray-600 dark:text-gray-300">
             {t('dashboard.trackExpenses')}
           </p>
         </div>

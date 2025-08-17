@@ -66,7 +66,9 @@
     "title": "Settings",
     "language": "Language",
     "profile": "Profile",
-    "preferences": "Preferences"
+    "preferences": "Preferences",
+    "switchToLight": "Switch to light mode",
+    "switchToDark": "Switch to dark mode"
   },
   "languages": {
     "en": "English",

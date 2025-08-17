@@ -66,7 +66,9 @@
     "title": "ตั้งค่า",
     "language": "ภาษา",
     "profile": "โปรไฟล์",
-    "preferences": "การตั้งค่า"
+    "preferences": "การตั้งค่า",
+    "switchToLight": "เปลี่ยนเป็นโหมดสว่าง",
+    "switchToDark": "เปลี่ยนเป็นโหมดมืด"
   },
   "languages": {
     "en": "English",

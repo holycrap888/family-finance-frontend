@@ -4,6 +4,7 @@ import { useAuth } from '../../context/AuthContext.jsx';
 import { validateEmail, validatePassword } from '../../utils/validators.js';
 import { LoadingSpinner } from '../common/Loading.jsx';
 import { LanguageSwitcher } from '../common/LanguageSwitcher.jsx';
+import { ThemeSwitcher } from '../common/ThemeSwitcher.jsx';
 import { useTranslation } from 'react-i18next';
 
 export const LoginForm = () => {
@@ -96,17 +97,18 @@ export const LoginForm = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center p-4">
-      <div className="bg-white rounded-2xl shadow-xl p-8 w-full max-w-md">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-900 dark:to-gray-800 flex items-center justify-center p-4">
+      <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-8 w-full max-w-md">
         {/* Header */}
         <div className="text-center mb-8">
           <DollarSign className="mx-auto h-12 w-12 text-indigo-600 mb-4" />
-          <h1 className="text-3xl font-bold text-gray-900">{t('dashboard.title')}</h1>
-          <p className="text-gray-600 mt-2">
+          <h1 className="text-3xl font-bold text-gray-900 dark:text-white">{t('dashboard.title')}</h1>
+          <p className="text-gray-600 dark:text-gray-300 mt-2">
             {isLogin ? t('common.welcome') : 'Create your account'}
           </p>
-          <div className="mt-4 flex justify-center">
+          <div className="mt-4 flex justify-center space-x-4">
             <LanguageSwitcher />
+            <ThemeSwitcher />
           </div>
         </div>
 
@@ -115,14 +117,15 @@ export const LoginForm = () => {
           {/* Name Field (Registration only) */}
           {!isLogin && (
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label htmlFor="name" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                 Full Name *
               </label>
               <input
+                id="name"
                 type="text"
                 required
-                className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-colors ${
-                  fieldErrors.name ? 'border-red-300' : 'border-gray-300'
+                className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-colors bg-white dark:bg-gray-700 text-gray-900 dark:text-white ${
+                  fieldErrors.name ? 'border-red-300' : 'border-gray-300 dark:border-gray-600'
                 }`}
                 value={formData.name}
                 onChange={(e) => handleInputChange('name', e.target.value)}
@@ -139,15 +142,15 @@ export const LoginForm = () => {
 
           {/* Email Field */}
           <div>
-            <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
+            <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                 {t('auth.email')} *
               </label>
               <input
                 id="email"
                 type="text"
               required
-              className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-colors ${
-                fieldErrors.email ? 'border-red-300' : 'border-gray-300'
+              className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-colors bg-white dark:bg-gray-700 text-gray-900 dark:text-white ${
+                fieldErrors.email ? 'border-red-300' : 'border-gray-300 dark:border-gray-600'
               }`}
               value={formData.email}
               onChange={(e) => handleInputChange('email', e.target.value)}
@@ -163,7 +166,7 @@ export const LoginForm = () => {
 
           {/* Password Field */}
           <div>
-            <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-2">
+            <label htmlFor="password" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
               {t('auth.password')} *
             </label>
             <div className="relative">
@@ -171,8 +174,8 @@ export const LoginForm = () => {
                 id="password"
                 type={showPassword ? "text" : "password"}
                 required
-                className={`w-full px-4 py-3 pr-12 border rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-colors ${
-                  fieldErrors.password ? 'border-red-300' : 'border-gray-300'
+                className={`w-full px-4 py-3 pr-12 border rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-colors bg-white dark:bg-gray-700 text-gray-900 dark:text-white ${
+                  fieldErrors.password ? 'border-red-300' : 'border-gray-300 dark:border-gray-600'
                 }`}
                 value={formData.password}
                 onChange={(e) => handleInputChange('password', e.target.value)}
@@ -180,7 +183,7 @@ export const LoginForm = () => {
               />
               <button
                 type="button"
-                className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600 transition-colors"
+                className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 dark:text-gray-500 hover:text-gray-600 dark:hover:text-gray-300 transition-colors"
                 onClick={() => setShowPassword(!showPassword)}
               >
                 {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
@@ -197,20 +200,21 @@ export const LoginForm = () => {
           {/* Salary Field (Registration only) */}
           {!isLogin && (
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label htmlFor="salary" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                 Monthly Salary *
               </label>
               <div className="relative">
-                <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500">
+                <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500 dark:text-gray-400">
                   $
                 </span>
                 <input
+                  id="salary"
                   type="number"
                   required
                   min="0"
                   step="0.01"
-                  className={`w-full pl-8 pr-4 py-3 border rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-colors ${
-                    fieldErrors.salary ? 'border-red-300' : 'border-gray-300'
+                  className={`w-full pl-8 pr-4 py-3 border rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-colors bg-white dark:bg-gray-700 text-gray-900 dark:text-white ${
+                    fieldErrors.salary ? 'border-red-300' : 'border-gray-300 dark:border-gray-600'
                   }`}
                   value={formData.salary}
                   onChange={(e) => handleInputChange('salary', e.target.value)}
@@ -257,14 +261,14 @@ export const LoginForm = () => {
         <div className="mt-6 text-center">
           <button
             onClick={toggleMode}
-            className="text-indigo-600 hover:text-indigo-700 font-medium transition-colors"
+            className="text-indigo-600 dark:text-indigo-400 hover:text-indigo-700 dark:hover:text-indigo-300 font-medium transition-colors"
           >
             {isLogin ? "Don't have an account? Sign up" : "Already have an account? Sign in"}
           </button>
         </div>
 
         {/* Demo Notice */}
-        <div className="mt-4 p-3 bg-blue-50 rounded-lg text-sm text-blue-700">
+        <div className="mt-4 p-3 bg-blue-50 dark:bg-blue-900/20 rounded-lg text-sm text-blue-700 dark:text-blue-300">
           <p><strong>Note:</strong> Make sure your backend server is running on the configured port.</p>
         </div>
       </div>
